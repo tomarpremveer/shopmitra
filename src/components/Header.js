@@ -1,11 +1,15 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import GoogleAuth from "./GoogleAuth";
+import Search from "./Search";
 const Header = () => {
   return (
     <div className="ui top attached menu">
       <div className="header item">
         <Link to="/">ShopMitra</Link>
+      </div>
+      <div className="header item">
+        <Search></Search>
       </div>
       <div className="right menu">
         <div className="item">
