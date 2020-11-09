@@ -4,13 +4,18 @@ import Cart from "./Cart";
 import Products from "./Products";
 import cartReducers from "../reducers/CartReducers";
 import userReducers from "../reducers/UserReducers";
+import ProductReducers from "../reducers/ProductReducers";
 import { combineReducers, createStore } from "redux";
 import { Provider } from "react-redux";
 //import { thunk, applyMiddleware } from "redux-thunk";
 import { BrowserRouter, Route } from "react-router-dom";
 import { composeWithDevTools } from "redux-devtools-extension";
 const store = createStore(
-  combineReducers({ cart: cartReducers, user: userReducers }),
+  combineReducers({
+    cart: cartReducers,
+    user: userReducers,
+    products: ProductReducers,
+  }),
   composeWithDevTools()
 );
 class App extends React.Component {

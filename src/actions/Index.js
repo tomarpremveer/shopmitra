@@ -3,6 +3,7 @@ import {
   SIGN_OUT,
   ADD_TO_CART,
   REMOVE_FROM_CART,
+  ADD_PRODUCTS,
 } from "../types/Index";
 
 export const signIn = () => {
@@ -28,5 +29,11 @@ export const removeFromCart = (itemId) => {
   return {
     type: REMOVE_FROM_CART,
     payload: itemId,
+  };
+};
+export const addProducts = (products) => {
+  return {
+    type: ADD_PRODUCTS,
+    payload: products,
   };
 };
