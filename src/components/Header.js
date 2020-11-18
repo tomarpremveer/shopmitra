@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
-import GoogleAuth from "./GoogleAuth";
+//import GoogleAuth from "./GoogleAuth";
 import Search from "./Search";
 import { useSelector } from "react-redux";
 const Header = () => {
@@ -24,9 +24,7 @@ const Header = () => {
             Cart <div id="cartCount" className="ui teal circular label"></div>
           </Link>
         </div>
-        <div className="item">
-          <GoogleAuth />
-        </div>
+        <div className="item">{/* <GoogleAuth />  */}</div>
       </div>
     </div>
   );

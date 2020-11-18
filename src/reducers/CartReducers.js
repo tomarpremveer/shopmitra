@@ -1,4 +1,8 @@
-import { ADD_TO_CART, REMOVE_FROM_CART } from "../types/Index";
+import {
+  ADD_TO_CART,
+  REMOVE_FROM_CART,
+  ADD_EXISTING_CART,
+} from "../types/Index";
 const INITIAL_STATE = {
   items: [],
   numberOfItems: 0,
@@ -10,6 +14,12 @@ export default (state = INITIAL_STATE, action) => {
         ...state,
         items: [...state.items, action.payload],
         numberOfItems: state.numberOfItems + 1,
+      };
+    case ADD_EXISTING_CART:
+      return {
+        ...state,
+        items: [...action.payload],
+        numberOfItems: action.payload.length,
       };
     case REMOVE_FROM_CART:
       return {
