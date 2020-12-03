@@ -1,23 +1,12 @@
 import React from "react";
-import { combineReducers, createStore, applyMiddleware } from "redux";
 import { Provider } from "react-redux";
-import thunk from "redux-thunk";
 import { BrowserRouter, Route } from "react-router-dom";
-import { composeWithDevTools } from "redux-devtools-extension";
 import Header from "./Header";
 import Cart from "./Cart";
 import Products from "./Products";
-import cartReducers from "../reducers/CartReducers";
-import userReducers from "../reducers/UserReducers";
-import ProductReducers from "../reducers/ProductReducers";
-const store = createStore(
-  combineReducers({
-    cart: cartReducers,
-    user: userReducers,
-    products: ProductReducers,
-  }),
-  composeWithDevTools(applyMiddleware(thunk))
-);
+import Order from "./Order";
+import ProductDetail from "./ProductDetail";
+import store from "../reducers/CreateStore";
 const App = () => {
   return (
     <Provider store={store}>
@@ -26,8 +15,9 @@ const App = () => {
           <Header />
         </div>
         <Route path="/" exact component={Products} />
-
+        <Route path="/product/:id" exact component={ProductDetail} />
         <Route path="/cart" exact component={Cart}></Route>
+        <Route path="/order" exact component={Order}></Route>
       </BrowserRouter>
     </Provider>
   );

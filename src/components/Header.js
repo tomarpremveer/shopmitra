@@ -2,16 +2,23 @@ import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 //import GoogleAuth from "./GoogleAuth";
 import Search from "./Search";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { addExistingElementsToCart } from ".././actions/CartActions.js";
+
 const Header = () => {
+  const dispatch = useDispatch();
   const numberOfCartItems = useSelector((state) => state.cart.numberOfItems);
+  const cartItems = useSelector((state) => state.cart.items);
   useEffect(() => {
+    if (cartItems.length < 1) {
+      dispatch(addExistingElementsToCart());
+    }
     let cartCountElement = document.querySelector("#cartCount");
-    //console.log(cartCountElement);
     cartCountElement.innerHTML = numberOfCartItems;
-  }, [numberOfCartItems]);
+  }, [dispatch, numberOfCartItems]);
+
   return (
-    <div className="ui top attached menu">
+    <div className="ui fixed top menu">
       <div className="header item">
         <Link to="/">ShopMitra</Link>
       </div>

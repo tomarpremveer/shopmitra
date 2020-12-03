@@ -1,7 +1,7 @@
 import React from "react";
 import { REMOVE_FROM_CART } from "../types/Index";
 import { useDispatch, useSelector } from "react-redux";
-import { removeFromLocalStorage } from "../utils/utilsfn";
+import localhostUtils from "../utils/localhostUtils";
 const Cart = () => {
   let mapCartItems = void 0;
   const dispatch = useDispatch();
@@ -15,7 +15,7 @@ const Cart = () => {
         <button
           className="ui red button"
           onClick={() => {
-            removeFromLocalStorage(item.id);
+            localhostUtils.removeFromLocalStorage(item.id);
             dispatch({ type: REMOVE_FROM_CART, payload: item });
           }}
         >

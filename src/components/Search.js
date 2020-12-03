@@ -1,13 +1,5 @@
 import React from "react";
-
-const onFocusAddClass = function () {
-  let searchElement = document.querySelector("#searchElement");
-  searchElement.parentElement.parentElement.classList.add("loading");
-};
-const onBlurRemoveClass = function () {
-  let searchElement = document.querySelector("#searchElement");
-  searchElement.parentElement.parentElement.classList.remove("loading");
-};
+import searchUtils from "../utils/searchUtils";
 const Search = function () {
   return (
     <div className="ui search">
@@ -16,8 +8,8 @@ const Search = function () {
           type="search"
           name="searchElement"
           id="searchElement"
-          onFocus={onFocusAddClass}
-          onBlur={onBlurRemoveClass}
+          onFocus={searchUtils.onFocusAddClass}
+          onBlur={searchUtils.onBlurRemoveClass}
           className="prompt"
           placeholder="Search for an item"
         />

@@ -1,28 +1,23 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { ADD_TO_CART } from "../types/Index";
+import { ADD_TO_CART, VIEW_PRODUCT } from "../types/Index";
 import { addProducts } from "../actions/Index";
-import { addExistingElementsToCart } from ".././actions/CartActions.js";
-import { addToLocalStorage } from "../utils/utilsfn";
+//import { Link } from "react-router-dom";
+import localhostUtils from "../utils/localhostUtils";
 const ProductList = () => {
   const dispatch = useDispatch();
-  const Products = useSelector((state) => state.products);
-  const cartItems = useSelector((state) => state.cart.items);
-
+  const Products = useSelector((state) => state.products.products);
   useEffect(() => {
     if (Products.length < 1) {
       dispatch(addProducts());
     }
-    if (cartItems.length < 1) {
-      dispatch(addExistingElementsToCart());
-    }
   }, [dispatch]);
-  if (Products) {
+  if (Products.length > 1) {
     const productList = Products.map((p) => (
       <div className="card" key={p.id}>
         <div className="image">
           {p.imageSrc ? (
-            <img src={`http://${p.imageSrc}`} alt="" />
+            <img src={`http://${p.imageSrc}`} loading="lazy" alt="" />
           ) : (
             "No image is provided for this Product"
           )}
@@ -30,12 +25,22 @@ const ProductList = () => {
             <button
               className="ui primary button"
               onClick={() => {
-                addToLocalStorage(p);
+                localhostUtils.addToLocalStorage(p);
                 dispatch({ type: ADD_TO_CART, payload: p });
               }}
             >
               Add to Cart
             </button>
+            <button
+              className="ui primary button"
+              onClick={() => {
+                dispatch({ type: VIEW_PRODUCT, payload: p });
+                window.open(`/product/${p.id}`, "_blank");
+              }}
+            >
+              View Product
+            </button>
+            {/*<Link to={`/product/${p.id}`}>Detail</Link>*/}
             <span className="right floated">
               <p>Price {p.price}</p>
             </span>
@@ -45,7 +50,7 @@ const ProductList = () => {
     ));
     return <div className="ui cards">{productList}</div>;
   } else {
-    return <div>Loading</div>;
+    return <div>Loading Products</div>;
   }
 };
 export default ProductList;
