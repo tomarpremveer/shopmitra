@@ -7,12 +7,14 @@ import Products from "./Products";
 import Order from "./Order";
 import ProductDetail from "./ProductDetail";
 import store from "../reducers/CreateStore";
+import Flash from "./Flash";
 const App = () => {
   return (
     <Provider store={store}>
       <BrowserRouter>
         <div className="ui">
           <Header />
+          <Flash />
         </div>
         <Route path="/" exact component={Products} />
         <Route path="/product/:id" exact component={ProductDetail} />

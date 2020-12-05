@@ -2,6 +2,7 @@ import React from "react";
 import { REMOVE_FROM_CART } from "../types/Index";
 import { useDispatch, useSelector } from "react-redux";
 import localhostUtils from "../utils/localhostUtils";
+import Flash from "./Flash";
 const Cart = () => {
   let mapCartItems = void 0;
   const dispatch = useDispatch();
@@ -24,7 +25,11 @@ const Cart = () => {
       </div>
     ));
   }
-  return <div>{mapCartItems || <h3>There are no items in the cart</h3>}</div>;
+  return (
+    <div style={{ marginTop: "65px" }}>
+      {mapCartItems || <h3>There are no items in the cart</h3>}
+    </div>
+  );
 };
 
 export default Cart;

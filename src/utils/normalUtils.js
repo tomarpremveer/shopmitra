@@ -1,4 +1,4 @@
-let utils = (function () {
+let utils = (function utils() {
   function cleanProduct(Products) {
     var cleanedProducts = Products.data.map(function (e) {
       let newElement = {

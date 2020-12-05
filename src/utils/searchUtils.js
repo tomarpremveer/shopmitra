@@ -1,4 +1,4 @@
-const search = (function () {
+const search = (function Search() {
   function addClass() {
     let searchElement = document.querySelector("#searchElement");
     searchElement.parentElement.parentElement.classList.add("loading");
@@ -7,6 +7,7 @@ const search = (function () {
     let searchElement = document.querySelector("#searchElement");
     searchElement.parentElement.parentElement.classList.remove("loading");
   }
+  function afn() {}
   return {
     onFocusAddClass: addClass,
     onBlurRemoveClass: removeClass,

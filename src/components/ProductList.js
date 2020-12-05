@@ -4,6 +4,7 @@ import { ADD_TO_CART, VIEW_PRODUCT } from "../types/Index";
 import { addProducts } from "../actions/Index";
 //import { Link } from "react-router-dom";
 import localhostUtils from "../utils/localhostUtils";
+import { addToCart } from "../actions/CartActions";
 const ProductList = () => {
   const dispatch = useDispatch();
   const Products = useSelector((state) => state.products.products);
@@ -26,7 +27,8 @@ const ProductList = () => {
               className="ui primary button"
               onClick={() => {
                 localhostUtils.addToLocalStorage(p);
-                dispatch({ type: ADD_TO_CART, payload: p });
+                dispatch(addToCart(p));
+                //dispatch({ type: ADD_TO_CART, payload: p });
               }}
             >
               Add to Cart
@@ -50,7 +52,7 @@ const ProductList = () => {
     ));
     return <div className="ui cards">{productList}</div>;
   } else {
-    return <div>Loading Products</div>;
+    return <div className="ui active centered inline loader"></div>;
   }
 };
 export default ProductList;

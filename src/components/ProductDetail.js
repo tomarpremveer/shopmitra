@@ -5,7 +5,7 @@ const ProductDetail = () => {
   const products = useSelector((state) => state.products.products);
   let { id } = useParams();
   const productToRender = products.filter((p) => {
-    return p.id == id;
+    return p.id === id;
   });
   if (productToRender[0] !== null) {
     return (
@@ -16,7 +16,7 @@ const ProductDetail = () => {
       </div>
     );
   } else {
-    return <div>Loading the product</div>;
+    return <div class="ui active centered inline loader"></div>;
   }
 };
 

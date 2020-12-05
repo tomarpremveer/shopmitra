@@ -1,18 +1,4 @@
-// export const addToLocalStorage = function add(item) {
-//   let cartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
-//   cartItems.push(item);
-//   localStorage.setItem("cartItems", JSON.stringify(cartItems));
-// };
-
-// export const removeFromLocalStorage = function remove(itemId) {
-//   let cartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
-//   let filteredItems = cartItems.filter(function filterFunction(item) {
-//     return item.id !== itemId;
-//   });
-//   localStorage.setItem("cartItems", JSON.stringify(filteredItems));
-// };
-
-const utils = (function () {
+const utils = (function localhost() {
   function remove(itemId) {
     let cartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
     let filteredItems = cartItems.filter(function filterFunction(item) {
@@ -22,8 +8,14 @@ const utils = (function () {
   }
   function add(item) {
     let cartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
-    cartItems.push(item);
-    localStorage.setItem("cartItems", JSON.stringify(cartItems));
+    let exists = cartItems.filter((p) => {
+      return p.id === item.id;
+    });
+    if (exists.length > 0) {
+    } else {
+      cartItems.push(item);
+      localStorage.setItem("cartItems", JSON.stringify(cartItems));
+    }
   }
   return {
     addToLocalStorage: add,
